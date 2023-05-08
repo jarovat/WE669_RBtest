@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0 (Python 3.10.8 on win32)" generated="20221030 13:10:01.186" rpa="false" schemaversion="3">
+<suite id="s1" name="Backend" source="d:\WE669\calculator\backend\backend.robot">
+<test id="s1-t1" name="TC01 POST with valid params to create Product, บันทึกข้อมูลสินค้า(ในการทดสอบจะดาวน์โหลดผล test เป็น json ไฟล์ไว้)" line="8">
+<kw name="POST">
+<arg>/create.php</arg>
+<arg>${json}</arg>
+<msg timestamp="20221030 13:10:01.266" level="FAIL">No keyword with name 'POST' found.</msg>
+<status status="FAIL" starttime="20221030 13:10:01.266" endtime="20221030 13:10:01.268"/>
+</kw>
+<kw name="Integer">
+<arg>response</arg>
+<arg>status 200</arg>
+<status status="NOT RUN" starttime="20221030 13:10:01.270" endtime="20221030 13:10:01.271"/>
+</kw>
+<kw name="Output" type="TEARDOWN">
+<arg>response body</arg>
+<arg>${OUTPUTDIR}</arg>
+<arg>/responseCreate.json</arg>
+<msg timestamp="20221030 13:10:01.273" level="FAIL">No keyword with name 'Output' found.</msg>
+<status status="FAIL" starttime="20221030 13:10:01.272" endtime="20221030 13:10:01.273">No keyword with name 'Output' found.</status>
+</kw>
+<status status="FAIL" starttime="20221030 13:10:01.260" endtime="20221030 13:10:01.273">No keyword with name 'POST' found.
+
+Also teardown failed:
+No keyword with name 'Output' found.</status>
+</test>
+<doc>ทดสอบการทํางานของ API</doc>
+<status status="FAIL" starttime="20221030 13:10:01.199" endtime="20221030 13:10:01.277"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Backend">Backend</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20221030 13:10:01.237" level="ERROR">Error in file 'd:\WE669\calculator\backend\backend.robot' on line 2: Importing library 'REST' failed: ModuleNotFoundError: No module named 'REST'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  c:\Users\computer\.vscode\extensions\robocorp.robotframework-lsp-1.3.5\src\robotframework_debug_adapter
+  D:\WE669\calculator
+  c:\Users\computer\.vscode\extensions\robocorp.robotframework-lsp-1.3.5\src
+  c:\Users\computer\.vscode\extensions\robocorp.robotframework-lsp-1.3.5\src\robotframework_ls\vendored
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.2288.0_x64__qbz5n2kfra8p0\python310.zip
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.2288.0_x64__qbz5n2kfra8p0\DLLs
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.2288.0_x64__qbz5n2kfra8p0\lib
+  C:\Users\computer\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0
+  d:\WE669\calculator\env
+  d:\WE669\calculator\env\lib\site-packages</msg>
+</errors>
+</robot>

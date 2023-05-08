@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0 (Python 3.10.8 on win32)" generated="20221210 11:47:23.750" rpa="false" schemaversion="3">
+<suite id="s1" name="Backend" source="D:\WE669\calculator\HW\2-Backend\backend.robot">
+<test id="s1-t1" name="TC01 POST with valid params to create Product, บันทึกข้อมูลสินค้า(ในการทดสอบจะดาวน์โหลดผล test เป็น json ไฟล์ไว้)" line="10">
+<kw name="POST" library="REST">
+<arg>/create.php</arg>
+<arg>${json}</arg>
+<tag>http</tag>
+<doc>*Sends a POST request to the endpoint.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.171" endtime="20221210 11:47:24.274"/>
+</kw>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>200</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.274" endtime="20221210 11:47:24.276"/>
+</kw>
+<kw name="Output" library="REST" type="TEARDOWN">
+<arg>response body</arg>
+<arg>${OUTPUTDIR}/responseCreate.json</arg>
+<tag>I/O</tag>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<msg timestamp="20221210 11:47:24.277" level="INFO">
+{
+    "status": "Success",
+    "message": "Added Successfully product_id : XUIk3RCzW1JF9T4OheLx"
+}</msg>
+<status status="PASS" starttime="20221210 11:47:24.277" endtime="20221210 11:47:24.288"/>
+</kw>
+<status status="PASS" starttime="20221210 11:47:24.168" endtime="20221210 11:47:24.288"/>
+</test>
+<test id="s1-t2" name="TC02 POST with valid params to update Product, แก้ไขข้อมูลสินค้า(ในการทดสอบจะดาวน์โหลดผล test เป็น json ไฟล์ไว้)" line="15">
+<kw name="POST" library="REST">
+<arg>/update.php?id=YDjAFaoNce9Kp4zr2GkW</arg>
+<arg>${jsonUpdate}</arg>
+<tag>http</tag>
+<doc>*Sends a POST request to the endpoint.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.292" endtime="20221210 11:47:24.308"/>
+</kw>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>200</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.309" endtime="20221210 11:47:24.310"/>
+</kw>
+<kw name="Output" library="REST" type="TEARDOWN">
+<arg>response body</arg>
+<arg>${OUTPUTDIR}/responseUpdate.json</arg>
+<tag>I/O</tag>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<msg timestamp="20221210 11:47:24.311" level="INFO">
+{
+    "status": "Success",
+    "message": "Update Successfully"
+}</msg>
+<status status="PASS" starttime="20221210 11:47:24.311" endtime="20221210 11:47:24.312"/>
+</kw>
+<status status="PASS" starttime="20221210 11:47:24.289" endtime="20221210 11:47:24.313"/>
+</test>
+<test id="s1-t3" name="TC03 GET existing log ,สินค้าแยกตามรหัส" line="20">
+<kw name="GET" library="REST">
+<arg>/getById.php?id=YDjAFaoNce9Kp4zr2GkW</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.315" endtime="20221210 11:47:24.334"/>
+</kw>
+<kw name="String" library="REST">
+<arg>$.product_id</arg>
+<arg>YDjAFaoNce9Kp4zr2GkW</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.335" endtime="20221210 11:47:24.365"/>
+</kw>
+<kw name="String" library="REST">
+<arg>$.product_name</arg>
+<arg>กระเป๋าหนัง</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.366" endtime="20221210 11:47:24.391"/>
+</kw>
+<kw name="Output" library="REST" type="TEARDOWN">
+<arg>response body</arg>
+<arg>${OUTPUTDIR}/responseById.json</arg>
+<tag>I/O</tag>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<msg timestamp="20221210 11:47:24.392" level="INFO">
+{
+    "product_id": "YDjAFaoNce9Kp4zr2GkW",
+    "product_name": "กระเป๋าหนัง",
+    "product_price": "1000",
+    "product_crtdate": "2022-12-10 11:17:25",
+    "product_update": "2022-12-10 11:25:09",
+    "user_id": "645159090011"
+}</msg>
+<status status="PASS" starttime="20221210 11:47:24.391" endtime="20221210 11:47:24.395"/>
+</kw>
+<status status="PASS" starttime="20221210 11:47:24.314" endtime="20221210 11:47:24.396"/>
+</test>
+<test id="s1-t4" name="TC04 GET existing log ,สินค้าทั้งหมด" line="26">
+<kw name="GET" library="REST">
+<arg>/getData.php?user_id=645159090011</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.398" endtime="20221210 11:47:24.418"/>
+</kw>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>200</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.419" endtime="20221210 11:47:24.421"/>
+</kw>
+<kw name="String" library="REST">
+<arg>$[0].user_id</arg>
+<arg>645159090011</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON string.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.421" endtime="20221210 11:47:24.449"/>
+</kw>
+<kw name="Output" library="REST" type="TEARDOWN">
+<arg>response body</arg>
+<arg>${OUTPUTDIR}/responseAllData.json</arg>
+<tag>I/O</tag>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<msg timestamp="20221210 11:47:24.450" level="INFO">
+[
+    {
+        "product_id": "XUIk3RCzW1JF9T4OheLx",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:47:24",
+        "product_update": "2022-12-10 11:47:24",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "MUJC4zOduhkoQ2gBaqyK",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:22:48",
+        "product_update": "2022-12-10 11:22:48",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "0FZ6CHQg3kaqYRc9E24y",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:22:42",
+        "product_update": "2022-12-10 11:22:42",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "SPrI9u1abjXZVpHdJcEk",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:19:10",
+        "product_update": "2022-12-10 11:19:10",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "YDjAFaoNce9Kp4zr2GkW",
+        "product_name": "กระเป๋าหนัง",
+        "product_price": "1000",
+        "product_crtdate": "2022-12-10 11:17:25",
+        "product_update": "2022-12-10 11:25:09",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "a2C6yzdpEsgWDHQ3I4nV",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:15:45",
+        "product_update": "2022-12-10 11:15:45",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "GWyZEuKJznghIeUwxpmR",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:14:58",
+        "product_update": "2022-12-10 11:14:58",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "soJeHaFxpXAgDNRu03yB",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:06:29",
+        "product_update": "2022-12-10 11:06:29",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "gf2hMyLK6jXFzNT7WDGx",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:05:59",
+        "product_update": "2022-12-10 11:05:59",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "KZDlRCkyTUW7t8dBLG2c",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 11:01:38",
+        "product_update": "2022-12-10 11:01:38",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "E8rp6lL0kOCUDFeuTVg2",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 10:59:24",
+        "product_update": "2022-12-10 10:59:24",
+        "user_id": "645159090011"
+    },
+    {
+        "product_id": "XWmoMtzs5lA2b9306PjL",
+        "product_name": "กระเป๋า",
+        "product_price": "2000",
+        "product_crtdate": "2022-12-10 10:58:35",
+        "product_update": "2022-12-10 10:58:35",
+        "user_id": "645159090011"
+    }
+]</msg>
+<status status="PASS" starttime="20221210 11:47:24.450" endtime="20221210 11:47:24.464"/>
+</kw>
+<status status="PASS" starttime="20221210 11:47:24.397" endtime="20221210 11:47:24.467"/>
+</test>
+<test id="s1-t5" name="TC05 GET existing log ,ลบสินค้า" line="32">
+<kw name="GET" library="REST">
+<arg>/delete.php?id=0FZ6CHQg3kaqYRc9E24y</arg>
+<tag>http</tag>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.469" endtime="20221210 11:47:24.537"/>
+</kw>
+<kw name="Integer" library="REST">
+<arg>response status</arg>
+<arg>200</arg>
+<tag>assertions</tag>
+<doc>*Asserts the field as JSON integer.*</doc>
+<status status="PASS" starttime="20221210 11:47:24.538" endtime="20221210 11:47:24.539"/>
+</kw>
+<kw name="Output" library="REST" type="TEARDOWN">
+<arg>response body</arg>
+<arg>${OUTPUTDIR}/DeleteData.json</arg>
+<tag>I/O</tag>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<msg timestamp="20221210 11:47:24.540" level="INFO">
+{
+    "status": "Success",
+    "message": "Delete Successfully"
+}</msg>
+<status status="PASS" starttime="20221210 11:47:24.540" endtime="20221210 11:47:24.561"/>
+</kw>
+<status status="PASS" starttime="20221210 11:47:24.468" endtime="20221210 11:47:24.562"/>
+</test>
+<doc>ทดสอบการทํางานของ API</doc>
+<status status="PASS" starttime="20221210 11:47:23.752" endtime="20221210 11:47:24.563"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="5" fail="0" skip="0" id="s1" name="Backend">Backend</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
